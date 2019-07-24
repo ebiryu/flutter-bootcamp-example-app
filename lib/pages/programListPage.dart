@@ -20,11 +20,20 @@ class ProgramListPage extends StatelessWidget {
               child: SearchTextArea(),
             ),
             Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                itemCount: 100,
-                itemBuilder: (context, index) {
-                  return ProgramListItem(index: index);
+              child: Consumer<SearchTextModel>(
+                builder: (_, snapshot, defaultWidget) {
+                  return ValueListenableBuilder<ProgramList>(
+                    valueListenable: snapshot.programListNotifier,
+                    builder: (_, programList, __) => ListView.builder(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          itemCount: programList.programList.length,
+                          itemBuilder: (context, index) {
+                            return ProgramListItem(
+                              program: programList.programList[index],
+                            );
+                          },
+                        ),
+                  );
                 },
               ),
             ),

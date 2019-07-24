@@ -43,6 +43,7 @@ class _SearchTextAreaState extends State<SearchTextArea> {
         controller: _controller,
         onEditingComplete: () {
           Provider.of<SearchTextModel>(context).submitText();
+          FocusScope.of(context).detach();
         },
       ),
     );

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tvmaze/model/searchTextModel.dart';
 
 class ProgramListItem extends StatelessWidget {
-  final int index;
+  final Program program;
 
-  ProgramListItem({this.index});
+  ProgramListItem({this.program});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,19 @@ class ProgramListItem extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Icon(Icons.live_tv, size: 50.0),
           ),
-          Text('program item $index'),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('program item ${program.show.id}'),
+                Text(
+                  '${program.show.name}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

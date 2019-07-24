@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future getResult({
+Future<ProgramList> getResult({
   String searchQuery,
 }) async {
   final response =
       await http.get('http://api.tvmaze.com/search/shows?q=$searchQuery');
 
   // I wanted to know format of the response.
-  print(json.decode(response.body));
+  // print(json.decode(response.body));
 
   if (response.statusCode == 200) {
     return ProgramList.fromJson(json.decode(response.body));
