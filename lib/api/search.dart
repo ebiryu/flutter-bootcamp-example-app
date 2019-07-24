@@ -43,12 +43,18 @@ class Program {
 
 class Show {
   final int id;
+  final String name;
+  final String imagePath;
 
   Show({
     this.id,
+    this.name,
+    this.imagePath,
   });
 
   factory Show.fromJson(json) => Show(
         id: json['id'],
+        name: json['name'],
+        imagePath: json['image']['medium'],
       );
 }
